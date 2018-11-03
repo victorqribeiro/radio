@@ -1,4 +1,4 @@
-let canvas, c, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim;
+let canvas, c, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim, u;
 
 function init(){
 
@@ -48,7 +48,7 @@ function update(){
 		return;
 	}
 
-	requestAnimationFrame(update);	
+	u = requestAnimationFrame(update);
 
 	radio.analyser.getByteTimeDomainData(radio.data);
 
@@ -70,6 +70,7 @@ function addEvents(){
 
 	canvas.addEventListener('click', function(){
 		radio.togglePlay();
+		cancelAnimationFrame(u);
 		update();
 	});
 	
@@ -78,6 +79,7 @@ function addEvents(){
 		canvas.height = h = innerHeight;
 		w2 = w>>1;
 		h2 = h>>1;
+		cancelAnimationFrame(u);
 		update();
 	});
 
