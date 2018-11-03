@@ -1,6 +1,6 @@
 # Web Radio - Visualizer
 
-![radio](favicon.png)
+[![groupImg](http://img.youtube.com/vi/R1F3-LB_oAk/0.jpg)](http://www.youtube.com/watch?v=R1F3-LB_oAk)
 
 A simple javascript web radio (visualizer).
 
