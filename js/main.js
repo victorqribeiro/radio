@@ -1,37 +1,31 @@
-let audio = new Audio();
-audio.preload = 'auto';
-audio.src = 'http://ice1.somafm.com/indiepop-128-mp3';
-audio.crossOrigin = 'anonymous';
+let canvas, c, radio, a, w, h, txt, pos;
 
-let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-let analyser = audioCtx.createAnalyser();
-analyser.fftSize = 2048;
 
-let bufferLength = analyser.frequencyBinCount;
-let dataArray = new Uint8Array(bufferLength);
-analyser.getByteTimeDomainData(dataArray);
+function init(){
 
-let source = audioCtx.createMediaElementSource( audio );
-source.connect( analyser );
-source.connect( audioCtx.destination );
+	radio = new Radio();
 
-let canvas = document.createElement('canvas');
+	canvas = document.createElement('canvas');
 
-canvas.width = w = innerWidth;
-canvas.height = h = innerHeight;
+	canvas.width = w = innerWidth;
+	canvas.height = h = innerHeight;
 
-let c = canvas.getContext('2d');
+	c = canvas.getContext('2d');
 
-document.body.appendChild(canvas);
+	document.body.appendChild(canvas);
 
-let txt = "Play";
-c.font = "bold italic 3em serif";
-let pos = {
-	x: (w-c.measureText(txt).width)/2,
-	y: h/2
-};
-
-let a = 0;
+	txt = "Play";
+	c.font = "bold italic 3em serif";
+	pos = {
+		x: (w-c.measureText(txt).width)/2,
+		y: h/2
+	};
+	
+	a = 0;
+	
+	addEvents();
+	update();
+}
 
 function update(){
 	
@@ -43,7 +37,7 @@ function update(){
 	gradient.addColorStop(0, 'hsl('+(a%360)+',100%,50%)');
 	gradient.addColorStop(1, 'hsl('+((a+90)%360)+',100%,50%)');
 	
-	if( audio.paused ){
+	if( radio.player.paused ){
 		c.fillStyle = "black";
 		c.fillRect(0,0,w,h);
 		c.fillStyle = gradient;
@@ -51,7 +45,7 @@ function update(){
 		return;
 	}
 
-	analyser.getByteTimeDomainData(dataArray);
+	radio.analyser.getByteTimeDomainData(radio.data);
 
   c.fillStyle = 'rgba(0,0,0,0.2)';
  
@@ -63,12 +57,12 @@ function update(){
 
   c.beginPath();
 
-  let sliceWidth = w * 1.0 / bufferLength;
+  let sliceWidth = w * 1.0 / radio.bufferLength;
   let x = 0;
 
-  for(let i = 0; i < bufferLength; i++) {
+  for(let i = 0; i < radio.bufferLength; i++) {
 
-    let v = dataArray[i] / 128.0;	
+    let v = radio.data[i] / 128.0;	
     let y = v * h/2;
 
     if(i === 0) {
@@ -85,25 +79,24 @@ function update(){
 	
 }
 
-function togglePlay(e){
-	if( audio.paused ){
-		audio.play();
-	}else{
-		audio.pause();
-	}
+function addEvents(){
+
+	canvas.addEventListener('click', function(){
+		radio.togglePlay();
+	});
+	
+	window.addEventListener('resize',function(){
+		canvas.width = w = innerWidth;
+		canvas.height = h = innerHeight;
+		c.font = "bold italic 3em serif";
+		pos = {
+			x: (w-c.measureText(txt).width)/2,
+			y: h/2
+		};
+	});
+
 }
 
 window.onload = function(){
-	update();
-	canvas.addEventListener('click', togglePlay);
+	init();
 };
-
-window.addEventListener('resize',function(){
-	canvas.width = w = innerWidth;
-	canvas.height = h = innerHeight;
-	c.font = "bold italic 3em serif";
-	pos = {
-		x: (w-c.measureText(txt).width)/2,
-		y: h/2
-	};
-});
