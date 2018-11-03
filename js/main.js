@@ -36,14 +36,15 @@ function showPaused(){
 }
 
 function update(){
-	
-	requestAnimationFrame(update);
-	radio.analyser.getByteTimeDomainData(radio.data);
-	
+
 	if( radio.player.paused ){
 		showPaused();
 		return;
 	}
+	
+	requestAnimationFrame(update);
+	
+	radio.analyser.getByteTimeDomainData(radio.data);
 
 	animation.show();
 	
@@ -53,6 +54,7 @@ function addEvents(){
 
 	canvas.addEventListener('click', function(){
 		radio.togglePlay();
+		update();
 	});
 	
 	window.addEventListener('resize',function(){
