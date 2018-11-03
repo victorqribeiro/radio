@@ -1,6 +1,9 @@
-let canvas, c, radio, animation, w, h, w2, h2, txt, pos;
+let canvas, c, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim;
 
 function init(){
+
+	iAnim = 0;
+	count = 0;
 
 	radio = new Radio();
 
@@ -14,7 +17,12 @@ function init(){
 
 	document.body.appendChild(canvas);
 	
-	animation = new Animation01();
+	listAnimations = [
+		Animation01,
+		Animation02
+	];
+	
+	animation = new listAnimations[iAnim]();
 	
 	addEvents();
 	update();
@@ -45,7 +53,17 @@ function update(){
 	radio.analyser.getByteTimeDomainData(radio.data);
 
 	animation.show();
+
+	if(!ini)
+		ini = Date.now();
+	fin = Date.now();
 	
+	if( fin - ini > 5000 ){
+		iAnim = (iAnim + 1) % listAnimations.length;
+		animation = new listAnimations[iAnim]();
+		ini = null;
+	}
+
 }
 
 function addEvents(){
@@ -58,6 +76,8 @@ function addEvents(){
 	window.addEventListener('resize',function(){
 		canvas.width = w = innerWidth;
 		canvas.height = h = innerHeight;
+		w2 = w>>1;
+		h2 = h>>1;
 		update();
 	});
 
