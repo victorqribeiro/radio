@@ -78,3 +78,5 @@ If you take a look at the other Animations you'll see it's pretty simple to impl
 Add more stations - I'll maybe add a option for anyone add their own stations ou audio - but the visualization part is the important one in this project
 
 Add more visualizations - Like old school demo scenes, winamp plugins (rember those?)...
+
+Add support to webgl - I don't know how to program shaders, but as soon as someone submit one, I'll add support to it. Each Animation class should have a context attribute, specifying the context it should be rendered.
