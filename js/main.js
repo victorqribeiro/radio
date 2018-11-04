@@ -19,7 +19,8 @@ function init(){
 	
 	listAnimations = [
 		Animation01,
-		Animation02
+		Animation02,
+		Animation03
 	];
 	
 	animation = new listAnimations[iAnim]();
@@ -58,11 +59,12 @@ function update(){
 		ini = Date.now();
 	fin = Date.now();
 	
-	if( fin - ini > 5000 ){
+	if( fin - ini > 7000 ){
 		iAnim = (iAnim + 1) % listAnimations.length;
 		animation = new listAnimations[iAnim]();
 		ini = null;
 	}
+	
 
 }
 

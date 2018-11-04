@@ -3,7 +3,6 @@ class Animation02 {
 	constructor(){
 		radio.analyser.fftSize = 64;
 		radio.update();
-		c.setTransform(1, 0, 0, 1, 0, 0);
 		this.angle = 0;
 		this.gradient = c.createRadialGradient(0,0,10,0,0,h);
 		this.gradient.addColorStop(0, 'black');
