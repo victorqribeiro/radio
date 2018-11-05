@@ -53,7 +53,7 @@ show(){
   
   for(let i = 0; i < radio.data.length; i++){
     // draw n boxes increment it's x position by 20 
-    // with their height defined be the radio.data[i]
+    // with their height defined by the radio.data[i]
     c.fillRect( 20 * i, h2 , 10, radio.data[i] );
   }
 }
@@ -80,3 +80,5 @@ Add more stations - I'll maybe add a option for anyone add their own stations ou
 Add more visualizations - Like old school demo scenes, winamp plugins (rember those?)...
 
 Add support to webgl - I don't know how to program shaders, but as soon as someone submit one, I'll add support to it. Each Animation class should have a context attribute, specifying the context it should be rendered.
+
+Migrate it to its own domain
