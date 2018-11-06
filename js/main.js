@@ -24,7 +24,7 @@ function init(){
 	];
 	
 	animation = new listAnimations[iAnim]();
-	
+
 	addEvents();
 	update();
 }
@@ -63,8 +63,7 @@ function update(){
 		iAnim = (iAnim + 1) % listAnimations.length;
 		animation = new listAnimations[iAnim]();
 		ini = null;
-	}
-	
+	}	
 
 }
 

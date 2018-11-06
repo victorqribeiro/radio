@@ -1,7 +1,7 @@
 class Animation01 {
 
 	constructor(){
-		radio.analyser.fftSize = 1024;
+		radio.analyser.fftSize = 2048;
 		radio.update();
 		this.angle = 0;
 		this.sliceWidth = w * 1.0 / radio.bufferLength;

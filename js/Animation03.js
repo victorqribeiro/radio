@@ -5,9 +5,16 @@ class Animation03 {
 		radio.update();
 		this.particles = [];
 		this.twopi = 2*Math.PI;
+		this.gradient = c.createRadialGradient(w2,h2,0,w2,h2,Math.min(w,h));
+		this.gradient.addColorStop(0, 'transparent');
+		this.gradient.addColorStop(0.02, 'blue');
+		this.gradient.addColorStop(0.1, 'yellow');
+		this.gradient.addColorStop(0.2, 'orange');
+		this.gradient.addColorStop(0.4, 'red');
+		this.gradient.addColorStop(1, 'gray');
 	}
 	
-	createParticle(x,y,size,direction,speed){
+	createParticle(x,y,size,direction,speed,color){
 		return {
 			x: x || 0,
 			y: y || 0,
@@ -15,8 +22,7 @@ class Animation03 {
 			lifeSpan: Math.random(),
 			isAlive: true,
 			twopi: 2*Math.PI,
-			g: Math.random() * 255,
-			b: Math.random() < 0.5 ? 255: 0,
+			color: color,
 			direction: direction,
 			speed: speed || 1,
 			update: function(){
@@ -30,7 +36,7 @@ class Animation03 {
 			},
 			show: function(){
 				c.beginPath();
-				c.fillStyle = 'rgba(255,255,255,'+this.lifeSpan+')';
+				c.fillStyle = this.color;
 				c.arc(this.x,this.y,this.size,0,this.twopi);
 				c.fill();
 				this.update();
@@ -39,16 +45,15 @@ class Animation03 {
 	}
 	
 	show(){
+	
+		let sum = ( radio.data.reduce( (a,b)=>Math.max(a,b) ) );
 
-		let sum = Math.floor( radio.data.reduce( (a,b) => a+b, 0 ) / radio.data.length / 128 );
-
-		if( sum ){
-			for(let i = 0, end = Math.random() * 5; i < end; i++){
-				this.particles.push( this.createParticle(w2,h2,Math.random()*5,2*Math.PI*Math.random(),Math.random()*10) );
-			}
+		for(let i = 0; i < (sum > 150 ? sum>>3 : 0); i++){
+			this.particles.push( this.createParticle(w2,h2,Math.random()*3,2*Math.PI*Math.random(),Math.random()*sum>>4,this.gradient) );
 		}
 
-		c.clearRect(0,0,w,h);
+		c.fillStyle = 'rgb(0,0,0,0.5)';
+		c.fillRect(0,0,w,h);
 		for(let i = 0; i < this.particles.length; i++){
 			this.particles[i].show();
 		}
