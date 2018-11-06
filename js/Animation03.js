@@ -1,6 +1,7 @@
 class Animation03 {
 
 	constructor(){
+		this.context = '2d';
 		radio.analyser.fftSize = 32;
 		radio.update();
 		this.particles = [];

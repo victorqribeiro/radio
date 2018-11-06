@@ -1,4 +1,4 @@
-let canvas, c, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim, u;
+let canvas, c, canvasgl, gl, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim, u;
 
 function init(){
 
@@ -10,17 +10,24 @@ function init(){
 	canvas = document.createElement('canvas');
 	canvas.width = w = innerWidth;
 	canvas.height = h = innerHeight;
+	
+	canvasgl = canvas.cloneNode(false);
+	canvasgl.style.display = 'none';
+	
 	c = canvas.getContext('2d');
+	gl = canvasgl.getContext('webgl');
 
 	w2 = w>>1;
 	h2 = h>>1;
 
 	document.body.appendChild(canvas);
+	document.body.appendChild(canvasgl);
 	
 	listAnimations = [
 		Animation01,
 		Animation02,
-		Animation03
+		Animation03,
+		Animation04
 	];
 	
 	animation = new listAnimations[iAnim]();
@@ -29,7 +36,22 @@ function init(){
 	update();
 }
 
+function changeCanvas(ctx){
+	switch(ctx){
+		case '2d' :
+				canvas.style.display = 'block';
+				canvasgl.style.display = 'none';
+			break;
+		case 'webgl' :
+				canvasgl.style.display = 'block';
+				canvas.style.display = 'none';
+				c.clearRect(0,0,w,h);
+			break;
+	}
+}
+
 function showPaused(){
+	changeCanvas('2d');
 	txt = "Play";
 	c.font = "bold italic 3em serif";
 	pos = {
@@ -62,6 +84,7 @@ function update(){
 	if( fin - ini > 7000 ){
 		iAnim = (iAnim + 1) % listAnimations.length;
 		animation = new listAnimations[iAnim]();
+		changeCanvas(animation.context);
 		ini = null;
 	}	
 
@@ -70,6 +93,14 @@ function update(){
 function addEvents(){
 
 	canvas.addEventListener('click', function(){
+		changeCanvas(animation.context);
+		radio.togglePlay();
+		cancelAnimationFrame(u);
+		update();
+	});
+	
+	canvasgl.addEventListener('click', function(){
+		changeCanvas(animation.context);
 		radio.togglePlay();
 		cancelAnimationFrame(u);
 		update();

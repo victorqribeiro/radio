@@ -1,6 +1,7 @@
 class Animation02 {
 
 	constructor(){
+		this.context = '2d';
 		radio.analyser.fftSize = 64;
 		radio.update();
 		this.angle = 0;
