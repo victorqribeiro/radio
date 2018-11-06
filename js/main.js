@@ -15,7 +15,7 @@ function init(){
 	canvasgl.style.display = 'none';
 	
 	c = canvas.getContext('2d');
-	gl = canvasgl.getContext('webgl');
+	gl = canvasgl.getContext('webgl') || canvasgl.getContext("experimental-webgl");
 
 	w2 = w>>1;
 	h2 = h>>1;
@@ -26,9 +26,12 @@ function init(){
 	listAnimations = [
 		Animation01,
 		Animation02,
-		Animation03,
-		Animation04
+		Animation03
 	];
+	
+	if(gl){
+		listAnimations.push( Animation04 );
+	}
 	
 	animation = new listAnimations[iAnim]();
 
