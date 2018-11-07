@@ -1,5 +1,5 @@
 /**
- * Animations with rising bars and falling floppy bits inspired by the
+ * Animation with rising bars and falling floppy bits inspired by the
  * visualization "Bars" in Windows Media Player
  */
 class Animation05 {
