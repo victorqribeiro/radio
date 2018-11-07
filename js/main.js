@@ -26,7 +26,8 @@ function init(){
 	listAnimations = [
 		Animation01,
 		Animation02,
-		Animation03
+		Animation03,
+		Animation05
 	];
 	
 	if(gl){
