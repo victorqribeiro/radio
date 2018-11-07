@@ -189,8 +189,10 @@ class Animation04 {
 		mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
 
 		const modelViewMatrix = mat4.create();
+		
+		let v = radio.data[radio.data.length>>1]/128;
 
-		mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -12.0]);
+		mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -12.0+v]);
 		
 		let rot = this.shape.indices ? [0,0,1] : [0,1,0];
 		
