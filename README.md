@@ -25,7 +25,7 @@ Update: since I added the WebGL support, you now have to define what kind of con
 
 This is the template for a animation class, you must implement the show method. Feel free to create any other auxiliary methods.
 ```javascript
-class Animation() {
+class Animation {
 
   constructor(){
   
