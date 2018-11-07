@@ -21,9 +21,11 @@ There are a set of varibles pre defined to draw.
 * h - Screen's height
 * h2 - Half of screen's height - center of screen in the y axis
 
+Update: since I added the WebGL support, you now have to define what kind of context your animation needs - 2d or webgl.
+
 This is the template for a animation class, you must implement the show method. Feel free to create any other auxiliary methods.
 ```javascript
-class Animation() {
+class Animation {
 
   constructor(){
   
@@ -40,6 +42,7 @@ Inside the constructor you should define the size of the radio.analyser.fftSize.
 So, you constructor now will look like this:
 ```javascript
 constructor() {
+  this.context = '2d'; // or 'webgl' if you want to write a shader animation.
   radio.analyser.fftSize = 32;
   radio.update(); // very import to call update after altering a radio's attribue.
 }
@@ -59,7 +62,7 @@ show(){
 }
 ```
 
-If you need to update any aspect of your animation, I suggest creating a update method in your Animarion class and calling it at the end of your show method
+If you need to update any aspect of your animation, I suggest creating a update method in your Animation class and calling it at the end of your show method
 ```javascript
 update() {
   //update code goes here 
@@ -81,4 +84,4 @@ Add more visualizations - Like old school demo scenes, winamp plugins (rember th
 
 ~~Add support to webgl - I don't know how to program shaders, but as soon as someone submit one, I'll add support to it. Each Animation class should have a context attribute, specifying the context it should be rendered.~~
 
-Migrate it to its own domain
+Migrate it to its own server with it's own domain
