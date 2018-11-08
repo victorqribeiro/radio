@@ -1,4 +1,4 @@
-let canvas, c, canvasgl, gl, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim, u;
+let canvas, c, canvasgl, gl, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim, u, listAnimations, lastAnim, lastCtx, time;
 
 function init(){
 
@@ -24,20 +24,35 @@ function init(){
 	document.body.appendChild(canvasgl);
 	
 	listAnimations = [
-		Animation01,
-		Animation02,
-		Animation03,
-		Animation05
+		{index: 0, anim: Animation01},
+		{index: 1, anim: Animation02},
+		{index: 2, anim: Animation03},
+		{index: 3, anim: Animation05},
+		{index: 4, anim: Animation06}
 	];
 	
 	if(gl){
-		listAnimations.push( Animation04 );
+		listAnimations.push( {index: 5, anim: Animation04 } );
 	}
 	
-	animation = new listAnimations[iAnim]();
-
+	selectAnimation();
+	
 	addEvents();
 	update();
+}
+
+function selectAnimation(){
+	time = (Math.random() * 7000) + 7000;
+	let currentAnimation = listAnimations[Math.floor(Math.random()*listAnimations.length)];
+	if( lastAnim !== currentAnimation.index){
+		lastAnim = currentAnimation.index;
+		let anim = new currentAnimation.anim();
+		if( lastCtx !== anim.context ){
+			changeCanvas( anim.context );
+			lastCtx = anim.context;
+		}
+		animation = anim;
+	}
 }
 
 function changeCanvas(ctx){
@@ -85,30 +100,26 @@ function update(){
 		ini = Date.now();
 	fin = Date.now();
 	
-	if( fin - ini > 7000 ){
+	if( fin - ini > time ){
 		iAnim = (iAnim + 1) % listAnimations.length;
-		animation = new listAnimations[iAnim]();
-		changeCanvas(animation.context);
+		selectAnimation();
 		ini = null;
 	}	
+	
+}
 
+function togglePlay(){
+	changeCanvas(animation.context);
+	radio.togglePlay();
+	cancelAnimationFrame(u);
+	update();
 }
 
 function addEvents(){
 
-	canvas.addEventListener('click', function(){
-		changeCanvas(animation.context);
-		radio.togglePlay();
-		cancelAnimationFrame(u);
-		update();
-	});
+	canvas.addEventListener('click', togglePlay );
 	
-	canvasgl.addEventListener('click', function(){
-		changeCanvas(animation.context);
-		radio.togglePlay();
-		cancelAnimationFrame(u);
-		update();
-	});
+	canvasgl.addEventListener('click', togglePlay );
 	
 	window.addEventListener('resize',function(){
 		canvas.width = w = innerWidth;
