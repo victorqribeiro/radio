@@ -121,11 +121,11 @@ function addEvents(){
 
 	canvas.addEventListener('click', togglePlay );
 	
-	canvas.addEventListener('touchstart' togglePlay );
+	canvas.addEventListener('touchstart', togglePlay );
 	
 	canvasgl.addEventListener('click', togglePlay );
 	
-	canvasgl.addEventListener('touchstart' togglePlay );
+	canvasgl.addEventListener('touchstart', togglePlay );
 	
 	window.addEventListener('resize',function(){
 		canvas.width = w = innerWidth;
