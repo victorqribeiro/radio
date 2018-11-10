@@ -12,9 +12,12 @@ This repo is a ongoing project that I've always wanted to do; some nice visualiz
 
 ## How to contribute an animation
 
+Before submiting a animation, think about how it will look on many devices (mobile, desktop, tablet...) and account for it. If you need to make a multiplication or division, think about if you have to do it every frame or just one time; if just one time, do it on the constructor method, instead of doing it everytime on the show method.
+
 There are a set of varibles pre defined to draw.
 
 * c - The canvas context where you will be drawing
+* radio.analyser.fftSize - Sets how much data you want from the audio
 * radio.data - Array that contains the audio's frequency (fft) to interact with
 * w - Screen's width
 * w2 - Half of screen's width - center of screen in the x axis
