@@ -60,7 +60,7 @@ function createUI(){
 	let btn = document.createElement('button');
 	btn.id = 'btnPlay';
 	btn.innerText = "Play";
-	btn.addEventListener('click', togglePlay );
+	btn.addEventListener('click', (e)=>{ togglePlay(e) } );
 	pause.appendChild( select );
 	pause.appendChild( btn );
 	document.body.appendChild( pause );
@@ -140,13 +140,11 @@ function togglePlay(e){
 
 function addEvents(){
 
-	canvas.addEventListener('touchstart', togglePlay );
-	canvas.addEventListener('mousedown', togglePlay );
+	canvas.addEventListener('click', (e)=>{ togglePlay(e) } );
 		
-	canvasgl.addEventListener('touchstart', togglePlay );
-	canvasgl.addEventListener('mousedown', togglePlay );
+	canvasgl.addEventListener('click', (e)=>{ togglePlay(e) } );
 	
-	window.addEventListener('resize',function(){
+	window.addEventListener('resize', ()=>{
 		canvas.width = w = innerWidth;
 		canvas.height = h = innerHeight;
 		w2 = w>>1;
@@ -157,6 +155,29 @@ function addEvents(){
 
 }
 
-window.onload = function(){
-	init();
-};
+window.onload = ()=>{	init(); };
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 67 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  // Update UI to notify the user they can add to home screen
+  addBtn.style.display = 'block';
+
+  addBtn.addEventListener('click', (e) => {
+    // hide our user interface that shows our A2HS button
+    addBtn.style.display = 'none';
+    // Show the prompt
+    deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+  });
+});
