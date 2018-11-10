@@ -35,9 +35,7 @@ function init(){
 		listAnimations.push( {index: 5, anim: Animation04 } );
 	}
 	
-	//selectAnimation();
-	
-	animation = new Animation06();
+	selectAnimation();
 	
 	addEvents();
 	update();
@@ -104,13 +102,14 @@ function update(){
 	
 	if( fin - ini > time ){
 		iAnim = (iAnim + 1) % listAnimations.length;
-		//selectAnimation();
+		selectAnimation();
 		ini = null;
 	}	
 	
 }
 
-function togglePlay(){
+function togglePlay(e){
+	e.preventDefault();
 	changeCanvas(animation.context);
 	radio.togglePlay();
 	cancelAnimationFrame(u);
@@ -119,13 +118,11 @@ function togglePlay(){
 
 function addEvents(){
 
-	canvas.addEventListener('click', togglePlay );
-	
 	canvas.addEventListener('touchstart', togglePlay );
-	
-	canvasgl.addEventListener('click', togglePlay );
-	
+	canvas.addEventListener('mousedown', togglePlay );
+		
 	canvasgl.addEventListener('touchstart', togglePlay );
+	canvasgl.addEventListener('mousedown', togglePlay );
 	
 	window.addEventListener('resize',function(){
 		canvas.width = w = innerWidth;
