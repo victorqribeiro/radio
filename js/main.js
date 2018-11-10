@@ -1,4 +1,4 @@
-let canvas, c, canvasgl, gl, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim, u, listAnimations, lastAnim, lastCtx, time;
+let canvas, c, canvasgl, gl, radio, animation, w, h, w2, h2, txt, pos, ini, fin, iAnim, u, listAnimations, lastAnim, lastCtx, time, pause;
 
 function init(){
 
@@ -35,10 +35,35 @@ function init(){
 		listAnimations.push( {index: 5, anim: Animation04 } );
 	}
 	
+	createUI();
+	
 	selectAnimation();
 	
 	addEvents();
 	update();
+}
+
+function createUI(){
+	pause = document.createElement('div');
+	pause.id = 'pause';
+	let select = document.createElement('select');
+	select.id = 'playlist';
+	for(let i = 0; i < radio.playlist.length; i++){
+		let opt = document.createElement('option');
+		opt.value = i;
+		opt.innerText = radio.playlist[i].name;
+		select.appendChild( opt );
+	}
+	select.addEventListener('change',function(){
+		radio.player.src = radio.playlist[this.value].src;
+	});
+	let btn = document.createElement('button');
+	btn.id = 'btnPlay';
+	btn.innerText = "Play";
+	btn.addEventListener('click', togglePlay );
+	pause.appendChild( select );
+	pause.appendChild( btn );
+	document.body.appendChild( pause );
 }
 
 function selectAnimation(){
@@ -57,11 +82,18 @@ function selectAnimation(){
 
 function changeCanvas(ctx){
 	switch(ctx){
+		case 'pause' :
+				pause.style.display = 'flex';
+				canvas.style.display = 'none';
+				canvasgl.style.display = 'none';
+			break;
 		case '2d' :
+				pause.style.display = 'none';
 				canvas.style.display = 'block';
 				canvasgl.style.display = 'none';
 			break;
 		case 'webgl' :
+				pause.style.display = 'none';
 				canvasgl.style.display = 'block';
 				canvas.style.display = 'none';
 				c.clearRect(0,0,w,h);
@@ -70,17 +102,7 @@ function changeCanvas(ctx){
 }
 
 function showPaused(){
-	changeCanvas('2d');
-	txt = "Play";
-	c.font = "bold italic 3em serif";
-	pos = {
-		x: (w-c.measureText(txt).width)/2,
-		y: h2
-	};
-	c.fillStyle = "black";
-	c.fillRect(0,0,w,h);
-	c.fillStyle = "white";
-	c.fillText(txt, pos.x, pos.y);
+	changeCanvas('pause');
 }
 
 function update(){
