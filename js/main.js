@@ -35,7 +35,9 @@ function init(){
 		listAnimations.push( {index: 5, anim: Animation04 } );
 	}
 	
-	selectAnimation();
+	//selectAnimation();
+	
+	animation = new Animation06();
 	
 	addEvents();
 	update();
@@ -102,7 +104,7 @@ function update(){
 	
 	if( fin - ini > time ){
 		iAnim = (iAnim + 1) % listAnimations.length;
-		selectAnimation();
+		//selectAnimation();
 		ini = null;
 	}	
 	
@@ -119,7 +121,11 @@ function addEvents(){
 
 	canvas.addEventListener('click', togglePlay );
 	
+	canvas.addEventListener('touchstart' togglePlay );
+	
 	canvasgl.addEventListener('click', togglePlay );
+	
+	canvasgl.addEventListener('touchstart' togglePlay );
 	
 	window.addEventListener('resize',function(){
 		canvas.width = w = innerWidth;
