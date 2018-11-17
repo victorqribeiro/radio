@@ -2,8 +2,7 @@ class Radio {
 
 	constructor(){
 		this.player = new Audio();
-		this.playlist = [{name: 'SomaFM - Indie Pop Rock', src: 'http://ice1.somafm.com/indiepop-128-mp3'},
-										 {name: 'Top 40', src: 'http://uk7.internet-radio.com:8226/stream'}];
+		this.playlist = [{name: 'Top 40', src: 'http://uk7.internet-radio.com:8226/stream'}];
 		this.player.src = this.playlist[0].src;
 		this.player.preload = 'auto';
 		this.player.crossOrigin = 'anonymous';
