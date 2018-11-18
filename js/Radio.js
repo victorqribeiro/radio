@@ -2,7 +2,9 @@ class Radio {
 
 	constructor(){
 		this.player = new Audio();
-		this.playlist = [{name: 'Top 40', src: 'http://uk7.internet-radio.com:8226/stream'}];
+		this.playlist = [{name: 'Top 40', src: 'http://uk7.internet-radio.com:8226/stream'},
+										 {name: 'Box UK', src: 'http://212.83.150.15:8189/stream?type=http&nocache=112476'},
+										 {name: 'Dance UK', src: 'http://212.83.150.15:8022//stream?type=http&nocache=112476'}];
 		this.player.src = this.playlist[0].src;
 		this.player.preload = 'auto';
 		this.player.crossOrigin = 'anonymous';
