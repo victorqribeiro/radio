@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# 2018-11-16:v1.0
+
+CACHE:
+manifest.webmanifest
+index.html
+offline.html
+favicon.png
+css/main.css
+sw.js
+js/Animation01.js
+js/Animation02.js
+js/Animation03.js
+js/Animation04.js
+js/Animation05.js
+js/Animation06.js
+js/main.js
+
+NETWORK:
+*
+
+FALLBACK:
+/ offline.html
