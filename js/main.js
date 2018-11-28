@@ -48,10 +48,15 @@ function createUI(){
 	pause.id = 'pause';
 	let select = document.createElement('select');
 	select.id = 'playlist';
+	let slug = getParameter();
 	for(let i = 0; i < radio.playlist.length; i++){
 		let opt = document.createElement('option');
 		opt.value = i;
 		opt.innerText = radio.playlist[i].name;
+		if( radio.playlist[i].slug === slug){
+			opt.selected = true;
+			radio.player.src = radio.playlist[i].src;
+		}
 		select.appendChild( opt );
 	}
 	select.addEventListener('change',function(){
@@ -153,6 +158,11 @@ function addEvents(){
 		update();
 	});
 
+}
+
+function getParameter() {
+	let url = window.location.pathname;
+	return url.replace(/\/radio\//,'').replace(/[\W_]+/g,'');
 }
 
 window.onload = ()=>{	init(); };

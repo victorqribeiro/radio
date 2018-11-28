@@ -2,9 +2,9 @@ class Radio {
 
 	constructor(){
 		this.player = new Audio();
-		this.playlist = [{name: 'Box UK', src: 'http://212.83.150.15:8189/stream?type=http&nocache=112476'},
-										 {name: 'Dance UK', src: 'http://212.83.150.15:8022//stream?type=http&nocache=112476'},
-										 {name: 'Classic Rock Florida HD', src: 'http://198.58.98.83:8258/stream'}
+		this.playlist = [{name: 'Box UK', slug: 'boxuk', src: 'http://212.83.150.15:8189/stream?type=http&nocache=112476'},
+										 {name: 'Dance UK', slug: 'danceuk', src: 'http://212.83.150.15:8022//stream?type=http&nocache=112476'},
+										 {name: 'Classic Rock Florida HD', slug: 'classicrockflorida', src: 'http://198.58.98.83:8258/stream'}
 										 ];
 		this.player.src = this.playlist[0].src;
 		this.player.preload = 'auto';
