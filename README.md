@@ -10,6 +10,14 @@ Listen [here](https://victorribeiro.com/radio).
 
 This repo is a ongoing project that I've always wanted to do; some nice visualizations accompanied of good music. Growing up playing with computers I always loved [demo scenes](https://en.wikipedia.org/wiki/Demoscene) and this is nothing but a homage to that era.
 
+## Radios 
+
+[BoxUK](https://boxuk.danceradiouk.com)
+
+[Classic Rock Florida](https://www.classicrockflorida.com)
+
+Do you have a web radio? Join the project!
+
 ## How to contribute an animation
 
 Before submitting a animation, think about how it will look on many devices (mobile, desktop, tablet...) and account for it. If you need to make a multiplication or division, think about if you have to do it every frame or just one time; if just one time, do it on the constructor method, instead of doing it everytime on the show method.
