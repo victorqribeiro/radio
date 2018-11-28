@@ -95,4 +95,4 @@ Add more visualizations - Like old school demo scenes, winamp plugins (rember th
 
 ~~Add support to webgl - I don't know how to program shaders, but as soon as someone submit one, I'll add support to it. Each Animation class should have a context attribute, specifying the context it should be rendered.~~
 
-Migrate it to its own server with it's own domain
+Migrate it to its own server with its own domain
