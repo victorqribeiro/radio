@@ -10,6 +10,14 @@ Listen [here](https://victorribeiro.com/radio).
 
 This repo is a ongoing project that I've always wanted to do; some nice visualizations accompanied of good music. Growing up playing with computers I always loved [demo scenes](https://en.wikipedia.org/wiki/Demoscene) and this is nothing but a homage to that era.
 
+## Radios 
+
+[BoxUK](https://boxuk.danceradiouk.com)
+
+[Classic Rock Florida](https://www.classicrockflorida.com)
+
+Do you have a web radio? Join the project!
+
 ## How to contribute an animation
 
 Before submitting a animation, think about how it will look on many devices (mobile, desktop, tablet...) and account for it. If you need to make a multiplication or division, think about if you have to do it every frame or just one time; if just one time, do it on the constructor method, instead of doing it everytime on the show method.
@@ -87,4 +95,4 @@ Add more visualizations - Like old school demo scenes, winamp plugins (rember th
 
 ~~Add support to webgl - I don't know how to program shaders, but as soon as someone submit one, I'll add support to it. Each Animation class should have a context attribute, specifying the context it should be rendered.~~
 
-Migrate it to its own server with it's own domain
+Migrate it to its own server with its own domain
