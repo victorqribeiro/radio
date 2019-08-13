@@ -3,7 +3,6 @@ class Radio {
 	constructor(){
 		this.player = new Audio(); http://192.227.85.169:6191/stream
 		this.playlist = [{name: 'Box UK', slug: 'boxuk', src: 'http://192.227.85.169:6191/stream'},
-										 {name: 'Dance UK', slug: 'danceuk', src: 'http://212.83.150.15:8022//stream?type=http&nocache=112476'},
 										 {name: 'Classic Rock Florida HD', slug: 'classicrockflorida', src: 'http://198.58.98.83:8258/stream'},
 										 {name: 'She Radio', slug: 'sheradio', src: 'http://airspectrum.cdnstream1.com:8136/1139_128'},
 										 {name: 'Rock And Roll Channel', slug: 'rockandrollchannel', src: 'http://uk2.internet-radio.com:8054/stream'},
