@@ -32,7 +32,8 @@ function init(){
 	];
 	
 	if(gl){
-		listAnimations.push( {index: 5, anim: Animation04 } );
+		/* I got the permission from BigWIngs(shadertoy.com/user/BigWIngs) on 2019-03-14 as seen here https://www.shadertoy.com/view/MdfBRX */
+		listAnimations.push( {index: 5, anim: Animation07 } );
 	}
 	
 	createUI();
@@ -110,7 +111,7 @@ function showPaused(){
 	changeCanvas('pause');
 }
 
-function update(){
+function update(t){
 
 	if( radio.player.paused ){
 		showPaused();
@@ -121,18 +122,19 @@ function update(){
 
 	radio.analyser.getByteTimeDomainData(radio.data);
 
-	animation.show();
+	animation.show(t);
 
 	if(!ini)
 		ini = Date.now();
 	fin = Date.now();
+	
 	
 	if( fin - ini > time ){
 		iAnim = (iAnim + 1) % listAnimations.length;
 		selectAnimation();
 		ini = null;
 	}	
-	
+
 }
 
 function togglePlay(e){

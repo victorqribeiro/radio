@@ -1,0 +1,18 @@
+{
+  "name": "Radio",
+  "short_name": "Radio",
+  "description": "A simple JavaScript radio",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#000",
+  "theme_color": "#000",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "density": 1
+    }
+  ]
+}
