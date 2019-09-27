@@ -424,6 +424,11 @@ void main()
 		  return null;
 		}
 
+		gl.detachShader(shaderProgram,vertexShader); //TODO, detaching might cause issues on some browsers, Might only need to delete.
+		gl.detachShader(shaderProgram,fragmentShader);
+		gl.deleteShader(vertexShader);
+		gl.deleteShader(fragmentShader);
+
 		return shaderProgram;
 	}
 	
