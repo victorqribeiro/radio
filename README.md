@@ -100,6 +100,7 @@ Migrate it to its own server with its own domain
 
 ## Thanks
 
-BigWings - [https://www.shadertoy.com/view/MdfBRX](https://www.shadertoy.com/view/MdfBRX)
+Eric Andersson - [https://github.com/andeeric](https://github.com/andeeric)  
+BigWings - [https://www.shadertoy.com/view/MdfBRX](https://www.shadertoy.com/view/MdfBRX)  
 
 
