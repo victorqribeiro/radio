@@ -2,8 +2,10 @@ class Animation03 {
 
 	constructor(){
 		this.context = '2d';
-		radio.analyser.fftSize = 32;
-		radio.update();
+		if(radio.canPlay){
+			radio.analyser.fftSize = 32;
+			radio.update();
+		}
 		this.particles = [];
 		this.twopi = 2*Math.PI;
 		this.gradient = c.createRadialGradient(w2,h2,0,w2,h2,Math.min(w,h));

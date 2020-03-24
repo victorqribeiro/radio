@@ -27,8 +27,10 @@ class Animation07 {
 
 	constructor(){
 		this.context = 'webgl';
-		radio.analyser.fftSize = 32;
-		radio.update();
+		if(radio.canPlay){
+			radio.analyser.fftSize = 32;
+			radio.update();
+		}
 		this.vertexShader = `
 			attribute vec4 aVertexPosition;
 

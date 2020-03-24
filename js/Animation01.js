@@ -2,8 +2,10 @@ class Animation01 {
 
 	constructor(){
 		this.context = '2d';
-		radio.analyser.fftSize = 2048;
-		radio.update();
+		if(radio.canPlay){
+			radio.analyser.fftSize = 2048;
+			radio.update();
+		}
 		this.angle = 0;
 		this.sliceWidth = w * 1.0 / radio.bufferLength;
 		this.createGradient();

@@ -37,9 +37,6 @@ function init(){
 	}
 	
 	createUI();
-	
-	selectAnimation();
-	
 	addEvents();
 	update();
 }
@@ -117,10 +114,11 @@ function update(t){
 		showPaused();
 		return;
 	}
-
+		
 	u = requestAnimationFrame(update);
 
 	radio.analyser.getByteTimeDomainData(radio.data);
+
 
 	animation.show(t);
 
@@ -139,8 +137,10 @@ function update(t){
 
 function togglePlay(e){
 	e.preventDefault();
-	changeCanvas(animation.context);
 	radio.togglePlay();
+	if(!animation)
+		selectAnimation();
+	changeCanvas(animation.context);
 	cancelAnimationFrame(u);
 	update();
 }

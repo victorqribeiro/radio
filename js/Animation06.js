@@ -2,8 +2,10 @@ class Animation06 {
 
 	constructor(){
 		this.context = '2d';
-		radio.analyser.fftSize = 128;
-		radio.update();
+		if(radio.canPlay){
+			radio.analyser.fftSize = 128;
+			radio.update();
+		}
 		this.step = Math.PI / radio.data.length;
 		this.stroke = Math.random()*360;
 	}

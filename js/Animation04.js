@@ -2,8 +2,10 @@ class Animation04 {
 
 	constructor(){
 		this.context = 'webgl';
-		radio.analyser.fftSize = 32;
-		radio.update();
+		if(radio.canPlay){
+			radio.analyser.fftSize = 32;
+			radio.update();
+		}
 		this.rotation = Math.random();
 		this.shapes = [
 			{

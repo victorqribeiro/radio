@@ -2,8 +2,10 @@ class Animation02 {
 
 	constructor(){
 		this.context = '2d';
-		radio.analyser.fftSize = 64;
-		radio.update();
+		if(radio.canPlay){
+			radio.analyser.fftSize = 64;
+			radio.update();
+		}
 		this.angle = 0;
 		this.ini = Math.floor(Math.random() * 360);
 		this.gradient = c.createRadialGradient(0,0,10,0,0,Math.max(w,h));

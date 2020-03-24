@@ -6,11 +6,11 @@ class Animation05 {
 
 	constructor() {
 		this.context = '2d';
-		radio.analyser.fftSize = 512;
-		radio.update();
-
+		if(radio.canPlay){
+			radio.analyser.fftSize = 512;
+			radio.update();
+		}
 		this.fillStyle = 'hsl(' + 360 * Math.random() + ', 50%, 50%)'; // random color
-
 		this.oldRadioData = new Array(radio.data.length).fill(0);
 		this.floppiez = new Array(radio.data.length).fill(0); // falling floppies
 		this.fallspeed = new Array(radio.data.length); // falling speed of each floppy
