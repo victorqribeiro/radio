@@ -31,7 +31,9 @@ function init(){
 		{index: 4, anim: Animation06}
 	];
 	
-	if(gl){
+	const iframe = window.frameElement;
+	
+	if(gl && !iframe){
 		/* I got the permission from BigWIngs(shadertoy.com/user/BigWIngs) on 2019-03-14 as seen here https://www.shadertoy.com/view/MdfBRX */
 		listAnimations.push( {index: 5, anim: Animation07 } );
 	}
